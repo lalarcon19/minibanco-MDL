@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="IMG/MDL.jpg">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='css/index.css') }}" type="image/x-icon">
+    <title>Crear Cuenta</title>
+</head>
+<body>
+    <div id="pantalla">
+        <div class="izquierda">
+            <div class="elementos">
+                <img src="{{ url_for('static', filename='imagenMDL.png' )}}" alt="logo">
+                <h1 class="titulo">banco mdl</h1>
+                <p class="texto">rapido y confiable</p>
+              </div>
+        </div>
+        <div class="derecha">
+            <div class="form">
+                <form action="/cuenta" method="POST">
+                    <h1 class="title">Registar cuenta</h1>
+                    <div class="inputContainer">
+                        <label for="">Tipo de cuenta</label>
+                        <select class="tipo_cuenta" required name="tipo_cuenta">
+                            <option value="cuentaCorriente" name="">Cuenta Corriente</option>
+                            <option value="cuentaAhorros" name="">Cuenta Ahorros</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="boton">Crear cuenta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

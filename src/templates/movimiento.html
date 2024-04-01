@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>minibanco MDL</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/movimiento.css') }}">
+    </head>
+    <body>
+            <div id="movimiento">
+              <div class="form">
+                <form action="/movimientos" method="POST">
+
+                          <p>{{nombre}}</p>
+                          <h1 class="title">Registre movimiento</h1>
+                    
+                          <div class="inputContainer">
+                            <label for="" class="label">Saldo actual</label>
+                            <input type="number" class="input" name="saldo" required> 
+                          </div>
+                    
+                          <div class="inputContainer">
+                            <label for="">Tipo de movimiento</label>
+                            <select class="tipo_movimiento" required name="tipo_movimiento">
+                                <option value="cuentaCorriente" name="">Consignacion</option>
+                                <option value="cuentaAhorros" name="">Transaccion</option>
+                            </select>
+                        </div>
+                    
+                          <div class="inputContainer">
+                            <label for="" class="label">Monto</label>
+                            <input type="number" class="input" name="monto" required> 
+                          </div>
+
+                          <button type="submit" class="boton">Realizar movimiento</button>
+                         
+                  </form>
+                  <div class="cerrarSesion">
+                    <button type="submit" class="btn">Cerrar sesion</button>
+                  </div>
+              </div>
+            </div>
+    </body>
+</html>

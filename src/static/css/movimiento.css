@@ -1,0 +1,73 @@
+.cerrarSesion{
+    position: relative;
+    height: 200px;
+}
+
+.btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+}
+
+.title {
+    font-size: 50px;
+    margin-bottom: 10vh;
+    color: #399b53;
+    -webkit-text-stroke: 1px black;
+  }
+  
+  .form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    border-radius: 1px solid;
+    text-align: center;
+    background-color: white;
+    width: 500px;
+    border-radius: 10px;
+    padding: 20px 40px;
+    margin:10vh 0 5vh 30vh;
+  }
+  .inputContainer {
+    position: relative;
+    height: 45px;
+    width: 90%;
+    margin-bottom: 17px;
+  }
+  .input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 0 20px;
+    background: none
+  }
+  
+  .label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 0 4px;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+  }
+  
+  .form .boton{
+    background-color: #399b53;
+    color: white;
+    border: 2px solid;
+    width: 90%;
+    padding: 13px;
+    text-transform: uppercase;
+    border-radius: 15px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid black;
+  }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>minibanco MDL</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    </head>
+    <body>
+        <div id="pantalla">
+            <div class="izquierda" >
+              <div class="elementos">
+                <img src="{{ url_for('static', filename='imagenMDL.png' )}}" alt="logo">
+                <h1 class="titulo">banco mdl</h1>
+                <p class="texto">rapido y confiable</p>
+              </div>
+            </div>
+            <div class="derecha">
+              <div class="form">
+                <form action="/usuario" method="POST">
+                          <h1 class="title">Registrar usuario</h1>
+                    
+                          <div class="inputContainer">
+                            <label for="" class="label">Nombre y apellido</label>
+                            <input type="text" class="input" name="nombre" required> 
+                          </div>
+                    
+                          <div class="inputContainer">
+                            <label for="" class="label">Identificacion</label>
+                            <input type="number"  class="input" name="identificacion" required>
+                          </div>
+                    
+                          <div class="inputContainer">
+                            <label for="" class="label">Clave</label>
+                            <input type="password" class="input" name="clave" required>
+                          </div>
+
+                          <button type="submit" class="boton">Registrar</button>
+                  </form>
+              </div>
+            </div>
+        </div>
+    </body>
+</html>
