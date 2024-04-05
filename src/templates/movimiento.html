@@ -4,24 +4,35 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>minibanco MDL</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/movimiento.css') }}">
+        <!--En flask cuando se quiere usar un documento se tiene que importar un archivo con junja2 usando url_for -->
+        <script src="{{ url_for('static',filename='/js/funcionalidad.js')}}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
     </head>
     <body>
-            <div id="movimiento">
+       <div id="pantalla">
+          <div class="izquierda" >
+              <div class="elementos">
+                <img src="{{ url_for('static', filename='/img/imagenMDL.png' )}}" alt="logo">
+                <h1 class="titulo">banco mdl</h1>
+                <p class="texto">rapido y confiable</p>
+              </div>
+          </div>
+          <div class="derecha">
               <div class="form">
-                <form action="/movimientos" method="POST">
+                <form action="/movimiento" method="POST">
 
                           <p>{{nombre}}</p>
-                          <h1 class="title">Registre movimiento</h1>
+                          <h1 class="title">Realizar movimiento</h1>
                     
                           <div class="inputContainer">
-                            <label for="" class="label">Saldo actual</label>
-                            <input type="number" class="input" name="saldo" required> 
+                            <label for="" class="label" >Saldo actual</label>
+                            <input type="number" class="input" name="saldo" value="{{ saldo }}" readonly> 
                           </div>
                     
                           <div class="inputContainer">
                             <label for="">Tipo de movimiento</label>
-                            <select class="tipo_movimiento" required name="tipo_movimiento">
+                            <select class="select-type" required name="tipo_movimiento">
+                              <option disabled selected>Seleccione un movimiento </option>
                                 <option value="cuentaCorriente" name="">Consignacion</option>
                                 <option value="cuentaAhorros" name="">Transaccion</option>
                             </select>
@@ -32,13 +43,16 @@
                             <input type="number" class="input" name="monto" required> 
                           </div>
 
-                          <button type="submit" class="boton">Realizar movimiento</button>
-                         
+                          <button type="submit" class="boton">Enviar</button>                         
                   </form>
-                  <div class="cerrarSesion">
-                    <button type="submit" class="btn">Cerrar sesion</button>
-                  </div>
               </div>
-            </div>
+              <div class="cerrarSesion">
+                <button type="submit" class="btn">Cerrar sesion</button>
+              </div>
+              <div class="listarUsuarios">
+                <button class="btn">Listar</button>
+              </div>
+          </div>
+      </div>
     </body>
 </html>

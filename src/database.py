@@ -1,9 +1,10 @@
 import mysql.connector 
 
 database = mysql.connector.connect(
-    host='localhost',
+    host='127.0.0.1',
     user='root',
-    password='',
+    port = 3307,
+    password='Lxalarconla*',
     database='banco_mdl'
 )
 

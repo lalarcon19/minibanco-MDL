@@ -10,16 +10,18 @@
         <div id="pantalla">
             <div class="izquierda" >
               <div class="elementos">
-                <img src="{{ url_for('static', filename='imagenMDL.png' )}}" alt="logo">
+                <img src="{{ url_for('static', filename='/img/imagenMDL.png' )}}" alt="logo">
                 <h1 class="titulo">banco mdl</h1>
                 <p class="texto">rapido y confiable</p>
               </div>
             </div>
             <div class="derecha">
               <div class="form">
+                <!--se crea el fromulario, se llama la misma que configuramos en el back que es /usuario juanto con 
+                un POST-->
                 <form action="/usuario" method="POST">
                           <h1 class="title">Registrar usuario</h1>
-                    
+                     <!--Divisiones que se crean-->
                           <div class="inputContainer">
                             <label for="" class="label">Nombre y apellido</label>
                             <input type="text" class="input" name="nombre" required> 
@@ -34,7 +36,7 @@
                             <label for="" class="label">Clave</label>
                             <input type="password" class="input" name="clave" required>
                           </div>
-
+                          <!--solo el boton que permite activar el envio de datos-->
                           <button type="submit" class="boton">Registrar</button>
                   </form>
               </div>

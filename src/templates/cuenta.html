@@ -12,7 +12,7 @@
     <div id="pantalla">
         <div class="izquierda">
             <div class="elementos">
-                <img src="{{ url_for('static', filename='imagenMDL.png' )}}" alt="logo">
+                <img src="{{ url_for('static', filename='/img/imagenMDL.png' )}}" alt="logo">
                 <h1 class="titulo">banco mdl</h1>
                 <p class="texto">rapido y confiable</p>
               </div>
@@ -20,15 +20,19 @@
         <div class="derecha">
             <div class="form">
                 <form action="/cuenta" method="POST">
+                    <!--el h1 permite crer titulos-->
                     <h1 class="title">Registar cuenta</h1>
                     <div class="inputContainer">
-                        <label for="">Tipo de cuenta</label>
-                        <select class="tipo_cuenta" required name="tipo_cuenta">
+                        <label for="">Tipo de cuenta</label> 
+                        <!--Permite crear un menu de selecciones para que el usuario las use-->
+                        <select class="select-type" required name="tipo_cuenta">
+                            <option disabled selected>Seleccione una cuenta </option>
                             <option value="cuentaCorriente" name="">Cuenta Corriente</option>
                             <option value="cuentaAhorros" name="">Cuenta Ahorros</option>
                         </select>
-                    </div>
+                    
                     <button type="submit" class="boton">Crear cuenta</button>
+                </div>
                 </form>
             </div>
         </div>
