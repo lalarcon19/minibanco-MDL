@@ -75,7 +75,7 @@ def agregarCuenta():
         cursor.execute(sql,data_cuenta)
         db.database.commit()
         current_app.logger.info("-----datos de cuenta guardados------")
-    return redirect(url_for('listaUsuarios'))   
+    return redirect(url_for('movimiento'))   
 
 # de aca en adelante no lo he terminado 
 
@@ -83,15 +83,50 @@ def agregarCuenta():
 @app.route('/movimiento', methods=['GET', 'POST'])
 def realizarMovimiento():
     current_app.logger.info("----movimientos----")
-    cursor = db.database.cursor()
+    #cursor = db.database.cursor()
     current_app.logger.info("-----conexion base de datos-----")
-    sql = "SELECT saldo FROM cuenta"
-    cursor.execute(sql)
-    current_app.logger.info(sql)
-    saldo = sql
-    return redirect(url_for('listaUsuarios')) 
-
-#
+   # sql = "SELECT saldo FROM cuenta" 
+   # current_app.logger.info(sql)
+    #cursor.execute()
+    
+    monto = request.form["monto"] 
+    tipo_movimiento =  request.form['tipo_movimiento']
+        
+    if tipo_movimiento == "consignacion":
+        saldo += monto
+        current_app.logger.info("nuevo saldo " + saldo)
+            
+    elif tipo_movimiento == "transaccion":
+        if saldo > monto:
+            saldo -= monto
+            current_app.logger.info("nuevo saldo" + saldo)
+        else:
+            cursor = db.database.cursor()       
+            update_sql = "UPDATE cuenta SET saldo = %s"   
+            cursor.execute(update_sql, (saldo))
+            db.database.commit()
+            cursor.close()
+    
+    current_app.logger.info("saldo guardado")
+        
+    return redirect(url_for('movimiento'))
+    
+    '''
+    monto = request.form ["monto"]
+    if tipo_cuenta == "consignacion":
+       saldo = saldo + monto
+       current_app.logger.info(saldo)
+       cursor.execute(saldo)
+       db.database.commit()
+       
+    if tipo_cuenta == "transaccion":
+        saldo = saldo - monto
+        current_app.logger.info(saldo)
+        cursor.execute(saldo)
+    
+    cursor.execute("UPDATE cuenta SET saldo = ? WHERE tipo_cuenta = ?", (saldo, tipo_cuenta))    
+    return redirect(url_for('movimiento')) 
+  
  
 @app.route('/tablaUsuarios', methods=['GET'])
 def obtenerUsuarios():
@@ -106,9 +141,7 @@ def obtenerUsuarios():
     for recorre in list:
         insertObject.append(dict(zip(columnNames, recorre)))
     return render_template('listaUsuarios.html', cuenta_usuario = list)
-    
-
-    
+    '''
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

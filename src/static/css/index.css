@@ -21,6 +21,10 @@ lo llamen solo se puede nombrar de esa manera una sola vez*/
   text-align: center;
   font-weight: bold; 
 }
+.elementos{
+  margin:20vh 0 10vh 0;
+  border-radius: 8px;
+}
 
 img{
   height: 30vh;
