@@ -43,15 +43,14 @@
                             <input type="number" class="input" name="monto" required> 
                           </div>
 
-                          <button type="submit" class="boton">Enviar</button>                         
+                          <button type="submit" class="boton">Enviar</button>        
+                          <div class="listarUsuarios">
+                            <a href="{{ url_for('obtenerUsuarios') }}" class="btn">Lista usuarios </a>
+                          </div>                 
                   </form>
+                  
               </div>
-              <div class="cerrarSesion">
-                <button type="submit" class="btn">Cerrar sesion</button>
-              </div>
-              <div class="listarUsuarios">
-                <button class="btn">Listar</button>
-              </div>
+             
           </div>
       </div>
     </body>

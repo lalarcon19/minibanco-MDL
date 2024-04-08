@@ -1,20 +1,13 @@
-/*se puede llamar como tal la etiqueta o la clase, aca se llama la etiqueta para que en todo el cuerpo no se le 
-agregue por defecto ninguna margen que es hacia afuera o padding que es una margen hacia dentro*/
 body{
   margin: 0;
   padding: 0;
 }
 
-/*cuando se llama asi # es un id cuando es asi el id tiene un rango mas alto que la clase entonces de la manera que 
-lo llamen solo se puede nombrar de esa manera una sola vez*/
 #pantalla{
   display: flex;
 }
 
-/*configuracion parte izquierda*/
-.izquierda{ /*las clases se llaman con el . las clases son mas flexibles porque se puede llamar varios 
-  elementos con este nombre lo que permite es que toda clase con el mismo nombre se le agrega este estilo,
-  ya las propiedades de estilos dentro de las clases si las buscan para no especificarles todo */
+.izquierda{ 
   background-color: #399b53;
   width: 40%;
   font-size:xx-large;
@@ -132,14 +125,22 @@ img{
 }
 
 .btn{
-  background-color:red;
+  display: inline-block;
+  background-color: #007bff;
   color: white;
   border: 2px solid;
   padding: 13px;
   text-transform: uppercase;
+  text-decoration: none;
   border-radius: 15px;
   font-weight: bold;
   text-align: center;
   border: 1px solid black;
+  margin-top: 15px;
 }
+
+#tabla{
+  border: 5px solid black;
+}
+
 /*configuracion movimientos*/
