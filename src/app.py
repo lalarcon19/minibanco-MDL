@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, current_app
-import os
+import os #proporciona una interfaz para interactuar con el sistema operativo. 
 import database as db
 
+# configuracion del directorio de plantillas 
 template_dir = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 template_dir = os.path.join(template_dir, 'src', 'templates')
 
@@ -37,7 +38,8 @@ def agregarUsuario():
     
     if nombre and identificacion and clave:
         current_app.logger.info("-----validacion usuario---------")
-        cursor = db.database.cursor() 
+        cursor = db.database.cursor() #Aquí se está creando un cursor para la conexión a la base de datos.
+        #El cursor se utiliza para ejecutar consultas SQL y manipular los resultados.
         current_app.logger.info("------conexion base de datos en tabla usuario-------")
         sql = "INSERT INTO usuario (nombre, identificacion, clave) VALUES (%s, %s, %s)" 
         data_usuario = (nombre, identificacion, clave) 
@@ -67,28 +69,29 @@ def agregarCuenta():
 #REALIZAR MOVIMIENTO
 @app.route('/movimiento', methods=['GET', 'POST'])
 def realizarMovimiento():
+    saldo = 0
+
     current_app.logger.info("----movimientos----")
     current_app.logger.info("-----conexion base de datos-----")
-    
     monto = request.form["monto"] 
     tipo_movimiento =  request.form['tipo_movimiento']
         
     if tipo_movimiento == "consignacion":
         saldo += monto
-        current_app.logger.info("nuevo saldo " + saldo)
+        current_app.logger.info("nuevo saldo " + str(saldo))
             
     elif tipo_movimiento == "transaccion":
         if saldo > monto:
             saldo -= monto
-            current_app.logger.info("nuevo saldo" + saldo)
-        else:
-            cursor = db.database.cursor()       
-            update_sql = "UPDATE cuenta SET saldo = %s"   
-            cursor.execute(update_sql, (saldo))
-            db.database.commit()
-            cursor.close()
+            current_app.logger.info("nuevo saldo" + str(saldo))
+       
+    cursor = db.database.cursor()       
+    update_sql = "UPDATE cuenta SET saldo=%s"   
+    cursor.execute(update_sql, (saldo, ))
+    db.database.commit()
+    cursor.close()
     
-    current_app.logger.info("saldo guardado")
+    current_app.logger.info("-----saldo guardado correctamente-----")
         
     return redirect(url_for('movimiento'))
       
@@ -97,15 +100,19 @@ def realizarMovimiento():
 def obtenerUsuarios():
     cursor = db.database.cursor()
     current_app.logger.info("-----se hizo la conexion a la base de datos")
-    consulta = "SELECT identificacion, nombre, clave FROM usuario "
+    consulta = "SELECT identificacion, nombre, clave, tipo_cuenta, saldo FROM usuario u INNER JOIN cuenta c ON c.usuario_id = u.identificacion"
     cursor.execute(consulta)
     myResult= cursor.fetchall()
-    current_app.logger.info(list)
+    current_app.logger.info(myResult)
     current_app.logger.info("---Se obtuvieron los datos correctamente------")
     insertObject = []
     columnNames = [column [0] for column in cursor.description]
-    for recorre in myResult:
+    #Se obtienen los nombres de las columnas de los resultados de la consulta. Esto es útil para crear un diccionario 
+    # que asocie los nombres de las columnas con los valores de cada fila.
+    for recorre in myResult: #Se itera sobre los resultados obtenidos de la consulta.
         insertObject.append(dict(zip(columnNames, recorre)))
+        # Para cada fila de resultados, se crea un diccionario que asocia cada nombre de columna con su respectivo valor en esa fila. 
+        # Este diccionario se añade a la lista insertObject.
     cursor.close()
     return render_template('listaUsuarios.html', data = insertObject)
 

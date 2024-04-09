@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>minibanco MDL</title>
         <!--En flask cuando se quiere usar un documento se tiene que importar un archivo con junja2 usando url_for -->
-        <script src="{{ url_for('static',filename='/js/funcionalidad.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
     </head>
     <body>
@@ -21,12 +20,11 @@
               <div class="form">
                 <form action="/movimiento" method="POST">
 
-                          <p>{{nombre}}</p>
                           <h1 class="title">Realizar movimiento</h1>
                     
                           <div class="inputContainer">
                             <label for="" class="label" >Saldo actual</label>
-                            <input type="number" class="input" name="saldo" value="{{ saldo }}"> 
+                            <input type="number" class="input" name="saldo" value="saldo" readonly> 
                           </div>
                     
                           <div class="inputContainer">
